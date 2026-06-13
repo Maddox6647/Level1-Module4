@@ -97,7 +97,7 @@ class MemoryMatch(tk.Tk):
             first_button.configure(text='')
             button_pressed.configure(text='')
 
-            self.first_button = None
+        self.first_button = None
 
     def setup_buttons(self, buttons_per_row):
         self.geometry('%sx%s' % (MemoryMatch.WIDTH, MemoryMatch.HEIGHT))

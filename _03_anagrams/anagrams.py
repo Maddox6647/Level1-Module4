@@ -44,3 +44,53 @@ word_anagrams = {
     "unreal": ["neural"],
     "wonderful": ["underflow"],
     "zeal": ["laze"]}
+
+def new_word():
+    global current_word
+
+    current_word = random.choice(list(word_anagrams.keys()))
+
+    # Use one of the anagrams as the scrambled word
+    scrambled = random.choice(word_anagrams[current_word])
+
+    word_label.config(text=scrambled)
+    guess_entry.delete(0, tk.END)
+    result_label.config(text="")
+
+
+def check_guess():
+    print("shrek")
+    guess = guess_entry.get().lower().strip()
+
+    if guess == current_word:
+        result_label.config(text="u actually got something right", fg="green")
+    else:
+        result_label.config(text=f"incorrect, u stupid monkey, the answer was '{current_word}'",fg="red")
+
+
+
+root = tk.Tk()
+root.title("anagrams")
+root.geometry("350x350")
+
+title_label = tk.Label(root, text="anagrams", font=("Arial", 18, "bold"))
+title_label.pack(pady=10)
+
+word_label = tk.Label(root, text="", font=("Arial", 24))
+word_label.pack(pady=10)
+
+guess_entry = tk.Entry(root, font=("Arial", 14))
+guess_entry.pack(pady=5)
+
+check_button = tk.Button(root, text="check guess", command=check_guess)
+check_button.pack(pady=5)
+
+next_button = tk.Button(root, text="new word", command=new_word)
+next_button.pack(pady=5)
+
+result_label = tk.Label(root, text="", font=("Arial", 12))
+result_label.pack(pady=10)
+
+new_word()
+
+root.mainloop()
